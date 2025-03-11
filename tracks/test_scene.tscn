@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dov4h4ifh60v7"]
+[gd_scene load_steps=17 format=3 uid="uid://dov4h4ifh60v7"]
 
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_tlv30"]
 [ext_resource type="Script" path="res://car/Camera3D.gd" id="2_bjt2j"]
 [ext_resource type="PackedScene" uid="uid://cvh0fwg53wpus" path="res://car/car.tscn" id="3_vrjvt"]
 [ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="4_vgadf"]
+[ext_resource type="Script" path="res://items/resources/item.gd" id="5_bisl3"]
+[ext_resource type="Script" path="res://items/laser/itemlaser.gd" id="6_phvoy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_74a4f"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,6 +41,11 @@ size = Vector3(4, 2, 8)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_md76x"]
 data = PackedVector3Array(-2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -1, 4, 2, 1, -4, -2, 1, -4, 2, -1, -4, -2, 1, -4, -2, -1, -4, 2, -1, -4, 2, 1, 4, 2, 1, -4, 2, -1, 4, 2, 1, -4, 2, -1, -4, 2, -1, 4, -2, 1, -4, -2, 1, 4, -2, -1, -4, -2, 1, 4, -2, -1, 4, -2, -1, -4, 2, 1, 4, -2, 1, 4, 2, 1, -4, -2, 1, 4, -2, 1, -4, 2, 1, -4, -2, -1, 4, 2, -1, 4, -2, -1, -4, 2, -1, 4, 2, -1, -4, -2, -1, -4)
+
+[sub_resource type="Resource" id="Resource_4fuk7"]
+script = ExtResource("6_phvoy")
+length = 2.0
+duration = 1.0
 
 [node name="TestScene" type="Node3D"]
 
@@ -80,6 +87,28 @@ skeleton = NodePath("../Ground2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
 shape = SubResource("BoxShape3D_cvbi4")
 
+[node name="Ground4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 25.0357, 0, -50.4817)
+mesh = SubResource("PlaneMesh_8ah1i")
+skeleton = NodePath("../Ground2")
+
+[node name="Ground" type="StaticBody3D" parent="Ground4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground4/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
+[node name="Ground5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -24.8102, 0, -50.471)
+mesh = SubResource("PlaneMesh_8ah1i")
+skeleton = NodePath("../Ground2")
+
+[node name="Ground" type="StaticBody3D" parent="Ground5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground5/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
 script = ExtResource("2_bjt2j")
@@ -99,11 +128,32 @@ shape = SubResource("ConcavePolygonShape3D_md76x")
 
 [node name="item_box" parent="." instance=ExtResource("4_vgadf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -8.98397)
+items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
 
 [node name="item_box3" parent="." instance=ExtResource("4_vgadf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -32.5632)
 
 [node name="item_box2" parent="." instance=ExtResource("4_vgadf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -71.5363)
+items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box4" parent="." instance=ExtResource("4_vgadf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -54.8105)
+items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box5" parent="." instance=ExtResource("4_vgadf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -43.2963)
+items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box6" parent="." instance=ExtResource("4_vgadf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -35.8126)
+items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box7" parent="." instance=ExtResource("4_vgadf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -23.5754)
+items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box8" parent="." instance=ExtResource("4_vgadf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -17.2604)
 
 [editable path="Car"]

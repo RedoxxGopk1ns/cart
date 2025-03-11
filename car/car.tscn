@@ -307,11 +307,6 @@ gravity_scale = 3.0
 angular_damp = 10.0
 script = ExtResource("1_0cfhi")
 
-[node name="ItemManager" parent="." node_paths=PackedStringArray("player", "car", "ray") instance=ExtResource("2_5idd1")]
-player = NodePath("..")
-car = NodePath("../CarMesh")
-ray = NodePath("../CarMesh/RayCast3D")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ywja5")
 
@@ -321,6 +316,11 @@ mesh = SubResource("SphereMesh_00jmq")
 
 [node name="CarMesh" type="Node3D" parent="."]
 top_level = true
+
+[node name="ItemManager" parent="CarMesh" node_paths=PackedStringArray("player", "car", "groundRay") instance=ExtResource("2_5idd1")]
+player = NodePath("../..")
+car = NodePath("..")
+groundRay = NodePath("../Ground Ray")
 
 [node name="suv2" type="Node3D" parent="CarMesh"]
 
@@ -354,5 +354,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, -0.76)
 mesh = SubResource("ArrayMesh_hdr0s")
 skeleton = NodePath("")
 
-[node name="RayCast3D" type="RayCast3D" parent="CarMesh"]
+[node name="Ground Ray" type="RayCast3D" parent="CarMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)

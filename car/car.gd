@@ -9,13 +9,14 @@ var body_tilt = 35
 
 var speed_input = 0
 var turn_input = 0
+var clamp_speed : float = 60
 
 @onready var car_mesh = $CarMesh
 @onready var body_mesh = $CarMesh/suv2
-@onready var ground_ray = $CarMesh/RayCast3D
+@onready var ground_ray = $"CarMesh/Ground Ray"
 @onready var right_wheel = $CarMesh/suv2/wheel_frontRight
 @onready var left_wheel = $CarMesh/suv2/wheel_frontLeft
-@onready var itemManager = $ItemManager
+@onready var itemManager = $CarMesh/ItemManager
 
 func _physics_process(delta):
 	car_mesh.position = position + sphere_offset
@@ -24,6 +25,10 @@ func _physics_process(delta):
 	
 	if ground_ray.is_colliding() :
 		apply_central_force(-car_mesh.global_transform.basis.z * speed_input)
+		
+		#linear_velocity.limit_length(1)
+		#print(linear_velocity)
+
 
 func _process(delta):
 	if not ground_ray.is_colliding():
@@ -32,7 +37,7 @@ func _process(delta):
 	turn_input = Input.get_axis("steer_right", "steer_left") * deg_to_rad(steering)
 	right_wheel.rotation.y = turn_input
 	left_wheel.rotation.y = turn_input
-
+	
 
 	if linear_velocity.length() > turn_stop_limit:
 		var new_basis = car_mesh.global_transform.basis.rotated(car_mesh.global_transform.basis.y, turn_input)

@@ -9,6 +9,8 @@ extends Node3D
 @export var activeItem : Array[ItemResource] = []
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority():
+		return
 	if event is InputEventKey and event.is_action_pressed("use_item"):
 		useItem()
 	#if event is InputEventKey and event.is_action_pressed("debug_button"):
@@ -20,11 +22,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func useItem():
 	if item1 :
 		item1.use(self)
-		item1 = null
-		if item2:
-			item1=item2
-			item2= null
+	
 	else : print("NO ITEMS")
+
+func removeItem1(item : ItemResource):
+	if item1 == item:
+		item1=item2
+		item2 = null
 
 func removeActiveItem(item : ItemResource):
 	activeItem.erase(item)
@@ -35,4 +39,3 @@ func update(delta):
 		for i in (activeItem.size()-1):
 			if activeItem[i]:
 				activeItem[i].update(self,delta)
-				print(activeItem[i]) 

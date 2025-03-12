@@ -1,0 +1,198 @@
+[gd_scene load_steps=17 format=3 uid="uid://ddy0pdbo6vup1"]
+
+[ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_2acwb"]
+[ext_resource type="Script" path="res://main.gd" id="1_lmf1o"]
+[ext_resource type="Script" path="res://car/Camera3D.gd" id="2_mware"]
+[ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="3_y1axk"]
+[ext_resource type="Script" path="res://items/resources/item.gd" id="4_bs1qh"]
+[ext_resource type="Script" path="res://items/laser/itemlaser.gd" id="5_bjv0c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_74a4f"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pcewp"]
+sky_material = SubResource("ProceduralSkyMaterial_74a4f")
+
+[sub_resource type="Environment" id="Environment_pk4ow"]
+background_mode = 2
+sky = SubResource("Sky_pcewp")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv6gg"]
+albedo_texture = ExtResource("1_2acwb")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8ah1i"]
+material = SubResource("StandardMaterial3D_cv6gg")
+size = Vector2(50, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvbi4"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj28r"]
+albedo_texture = ExtResource("1_2acwb")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jugg0"]
+material = SubResource("StandardMaterial3D_pj28r")
+size = Vector3(4, 2, 8)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_md76x"]
+data = PackedVector3Array(-2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -1, 4, 2, 1, -4, -2, 1, -4, 2, -1, -4, -2, 1, -4, -2, -1, -4, 2, -1, -4, 2, 1, 4, 2, 1, -4, 2, -1, 4, 2, 1, -4, 2, -1, -4, 2, -1, 4, -2, 1, -4, -2, 1, 4, -2, -1, -4, -2, 1, 4, -2, -1, 4, -2, -1, -4, 2, 1, 4, -2, 1, 4, 2, 1, -4, -2, 1, 4, -2, 1, -4, 2, 1, -4, -2, -1, 4, 2, -1, 4, -2, -1, -4, 2, -1, 4, 2, -1, -4, -2, -1, -4)
+
+[sub_resource type="Resource" id="Resource_4fuk7"]
+script = ExtResource("5_bjv0c")
+
+[node name="Main" type="Node"]
+script = ExtResource("1_lmf1o")
+
+[node name="TestScene" type="Node3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TestScene"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="TestScene"]
+environment = SubResource("Environment_pk4ow")
+
+[node name="Ground" type="MeshInstance3D" parent="TestScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00478959, 0, -0.000242233)
+mesh = SubResource("PlaneMesh_8ah1i")
+
+[node name="Ground" type="StaticBody3D" parent="TestScene/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestScene/Ground/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
+[node name="Ground2" type="MeshInstance3D" parent="TestScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+mesh = SubResource("PlaneMesh_8ah1i")
+
+[node name="Ground" type="StaticBody3D" parent="TestScene/Ground2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestScene/Ground2/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
+[node name="Ground3" type="MeshInstance3D" parent="TestScene"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -75.1896)
+mesh = SubResource("PlaneMesh_8ah1i")
+skeleton = NodePath("../Ground2")
+
+[node name="Ground" type="StaticBody3D" parent="TestScene/Ground3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestScene/Ground3/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
+[node name="Ground4" type="MeshInstance3D" parent="TestScene"]
+transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 25.0357, 0, -50.4817)
+mesh = SubResource("PlaneMesh_8ah1i")
+skeleton = NodePath("../Ground2")
+
+[node name="Ground" type="StaticBody3D" parent="TestScene/Ground4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestScene/Ground4/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
+[node name="Ground5" type="MeshInstance3D" parent="TestScene"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -24.8102, 0, -50.471)
+mesh = SubResource("PlaneMesh_8ah1i")
+skeleton = NodePath("../Ground2")
+
+[node name="Ground" type="StaticBody3D" parent="TestScene/Ground5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestScene/Ground5/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_cvbi4")
+
+[node name="Camera3D" type="Camera3D" parent="TestScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
+script = ExtResource("2_mware")
+offset = Vector3(2.08165e-12, 3, 4)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestScene"]
+transform = Transform3D(1, 0, 0, 0, 0.969923, -0.243412, 0, 0.243412, 0.969923, 13, 0, 0)
+mesh = SubResource("BoxMesh_jugg0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TestScene/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestScene/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_md76x")
+
+[node name="item_box" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -8.98397)
+items_list = Array[ExtResource("4_bs1qh")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box3" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -32.5632)
+
+[node name="item_box2" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -71.5363)
+items_list = Array[ExtResource("4_bs1qh")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box4" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -54.8105)
+items_list = Array[ExtResource("4_bs1qh")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box5" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -43.2963)
+items_list = Array[ExtResource("4_bs1qh")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box6" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -35.8126)
+items_list = Array[ExtResource("4_bs1qh")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box7" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -23.5754)
+items_list = Array[ExtResource("4_bs1qh")]([SubResource("Resource_4fuk7")])
+
+[node name="item_box8" parent="TestScene" instance=ExtResource("3_y1axk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -17.2604)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Multiplayer" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Multiplayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -46.5
+offset_right = 38.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Car Game"
+
+[node name="Host" type="Button" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="UI/Multiplayer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://car/car.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="UI/Multiplayer/VBoxContainer/Join" to="." method="_on_join_pressed"]

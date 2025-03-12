@@ -17,10 +17,17 @@ var clamp_speed : float = 60
 @onready var right_wheel = $CarMesh/suv2/wheel_frontRight
 @onready var left_wheel = $CarMesh/suv2/wheel_frontLeft
 @onready var itemManager = $CarMesh/ItemManager
+@onready var hitbox = $Hitbox
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(str(name)))
+	
 
 func _physics_process(delta):
+	if !is_multiplayer_authority():
+		return
 	car_mesh.position = position + sphere_offset
-	
+	hitbox.position = car_mesh.position
 	itemManager.update(delta)
 	
 	if ground_ray.is_colliding() :
@@ -31,6 +38,8 @@ func _physics_process(delta):
 
 
 func _process(delta):
+	if !is_multiplayer_authority():
+		return
 	if not ground_ray.is_colliding():
 		return
 	speed_input = Input.get_axis("brake", "accelerate") * acceleration

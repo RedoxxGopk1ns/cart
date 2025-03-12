@@ -1,25 +1,29 @@
-[gd_scene load_steps=20 format=4 uid="uid://cvh0fwg53wpus"]
+[gd_scene load_steps=22 format=4 uid="uid://cvh0fwg53wpus"]
 
 [ext_resource type="Script" path="res://car/car.gd" id="1_0cfhi"]
-[ext_resource type="Texture2D" uid="uid://c1f70054pofjm" path="res://assets/texture_09.png" id="1_rqohb"]
 [ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="2_5idd1"]
+[ext_resource type="SphereMesh" uid="uid://dnhl2v80xyhnd" path="res://car/transparentHitbox.tres" id="2_bwtf6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dtpcx"]
 bounce = 0.1
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oiera"]
+radius = 0.58
+height = 2.74
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1daa2"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 1)
+uv1_scale = Vector3(5.57, 5.57, 5.57)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0tnub"]
+material = SubResource("StandardMaterial3D_1daa2")
+radius = 0.58
+height = 2.74
+radial_segments = 16
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_ywja5"]
 radius = 1.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vviip"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.643137)
-albedo_texture = ExtResource("1_rqohb")
-uv1_scale = Vector3(6, 3, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_00jmq"]
-material = SubResource("StandardMaterial3D_vviip")
-radius = 1.0
-height = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01a33"]
 resource_name = "plastic"
@@ -300,6 +304,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_4qgef")
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gfyju"]
+properties/0/path = NodePath("CarMesh:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("CarMesh:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Car" type="RigidBody3D"]
 collision_layer = 2
 physics_material_override = SubResource("PhysicsMaterial_dtpcx")
@@ -307,12 +319,18 @@ gravity_scale = 3.0
 angular_damp = 10.0
 script = ExtResource("1_0cfhi")
 
+[node name="Hitbox" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.673, 0)
+shape = SubResource("CapsuleShape3D_oiera")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hitbox"]
+mesh = SubResource("CapsuleMesh_0tnub")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ywja5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-visible = false
-mesh = SubResource("SphereMesh_00jmq")
+mesh = ExtResource("2_bwtf6")
 
 [node name="CarMesh" type="Node3D" parent="."]
 top_level = true
@@ -356,3 +374,6 @@ skeleton = NodePath("")
 
 [node name="Ground Ray" type="RayCast3D" parent="CarMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_gfyju")

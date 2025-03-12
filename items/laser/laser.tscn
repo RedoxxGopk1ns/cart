@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvq1txnfpvnra"]
+[gd_scene load_steps=4 format=3 uid="uid://cvq1txnfpvnra"]
+
+[ext_resource type="Script" path="res://items/laser/laser.gd" id="1_yg103"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3i3gi"]
 height = 5.0
@@ -13,6 +15,7 @@ shape = SubResource("CylinderShape3D_3i3gi")
 target_position = Vector3(0, -2.5, 0)
 max_results = 10
 collision_mask = 3
+script = ExtResource("1_yg103")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 0)

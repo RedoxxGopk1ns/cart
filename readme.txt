@@ -10,3 +10,4 @@ improve active item array iteration( make it safe for spamming)
 fix controller L1 use item
 make both windows work at the same time
 clamp top speed
+make camera work

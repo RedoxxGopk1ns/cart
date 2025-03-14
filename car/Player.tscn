@@ -1,14 +1,10 @@
-[gd_scene load_steps=19 format=4 uid="uid://cvh0fwg53wpus"]
+[gd_scene load_steps=18 format=4 uid="uid://d4hqmgrbdm11k"]
 
-[ext_resource type="Script" path="res://car/car.gd" id="1_0cfhi"]
-[ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="2_5idd1"]
-[ext_resource type="SphereMesh" uid="uid://dnhl2v80xyhnd" path="res://car/transparentHitbox.tres" id="2_bwtf6"]
+[ext_resource type="Script" path="res://car/player.gd" id="1_830l5"]
+[ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="1_we1y5"]
+[ext_resource type="Script" path="res://wheel_ray.gd" id="3_i5fk0"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_dtpcx"]
-bounce = 0.1
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_ywja5"]
-radius = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_4lnbh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_01a33"]
 resource_name = "plastic"
@@ -291,59 +287,60 @@ shadow_mesh = SubResource("ArrayMesh_4qgef")
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_gfyju"]
 
-[node name="Car" type="RigidBody3D"]
-collision_layer = 3
-physics_material_override = SubResource("PhysicsMaterial_dtpcx")
-gravity_scale = 3.0
-angular_damp = 10.0
-script = ExtResource("1_0cfhi")
+[node name="Player" type="RigidBody3D"]
+script = ExtResource("1_830l5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_ywja5")
+[node name="ItemManager" parent="." node_paths=PackedStringArray("groundRay") instance=ExtResource("1_we1y5")]
+groundRay = NodePath("../RayFrontRight")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
-mesh = ExtResource("2_bwtf6")
+[node name="RayFrontRight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+script = ExtResource("3_i5fk0")
+
+[node name="RayFrontLeft" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+
+[node name="RayRearRight" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+
+[node name="RayRearLeft" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675767, -0.1)
+shape = SubResource("BoxShape3D_4lnbh")
 
 [node name="CarMesh" type="Node3D" parent="."]
 
-[node name="ItemManager" parent="CarMesh" node_paths=PackedStringArray("player", "groundRay") instance=ExtResource("2_5idd1")]
-player = NodePath("../..")
-groundRay = NodePath("../Ground Ray")
-
-[node name="suv2" type="Node3D" parent="CarMesh"]
-
-[node name="body" type="MeshInstance3D" parent="CarMesh/suv2"]
+[node name="body" type="MeshInstance3D" parent="CarMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.1)
 mesh = SubResource("ArrayMesh_e7c5a")
 skeleton = NodePath("")
 
-[node name="wheel_back" type="MeshInstance3D" parent="CarMesh/suv2/body"]
+[node name="wheel_back" type="MeshInstance3D" parent="CarMesh/body"]
 transform = Transform3D(-5.96046e-08, 0, 1, 0, 1, 0, 1, 0, 5.96046e-08, 0, 0.5, 1.15)
 mesh = SubResource("ArrayMesh_hdr0s")
 skeleton = NodePath("")
 
-[node name="wheel_backLeft" type="MeshInstance3D" parent="CarMesh/suv2"]
+[node name="wheel_backLeft" type="MeshInstance3D" parent="CarMesh"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.3, 0.56)
 mesh = SubResource("ArrayMesh_hdr0s")
 skeleton = NodePath("")
 
-[node name="wheel_backRight" type="MeshInstance3D" parent="CarMesh/suv2"]
+[node name="wheel_backRight" type="MeshInstance3D" parent="CarMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, 0.56)
 mesh = SubResource("ArrayMesh_hdr0s")
 skeleton = NodePath("")
 
-[node name="wheel_frontLeft" type="MeshInstance3D" parent="CarMesh/suv2"]
+[node name="wheel_frontLeft" type="MeshInstance3D" parent="CarMesh"]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.3, -0.76)
 mesh = SubResource("ArrayMesh_hdr0s")
 skeleton = NodePath("")
 
-[node name="wheel_frontRight" type="MeshInstance3D" parent="CarMesh/suv2"]
+[node name="wheel_frontRight" type="MeshInstance3D" parent="CarMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.3, -0.76)
 mesh = SubResource("ArrayMesh_hdr0s")
 skeleton = NodePath("")
-
-[node name="Ground Ray" type="RayCast3D" parent="CarMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 0.5, 2.08165e-12)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_gfyju")

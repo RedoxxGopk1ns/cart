@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="3d_car_sphere"
-run/main_scene="res://main.tscn"
+config/name="failed hitbox"
+run/main_scene="res://tracks/test_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [display]

@@ -49,6 +49,7 @@ script = ExtResource("5_bjv0c")
 script = ExtResource("1_lmf1o")
 
 [node name="TestScene" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.93005, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="TestScene"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://o2pw746ej8d4"]
 
 [ext_resource type="PackedScene" uid="uid://dta0aubqubx5g" path="res://assets/track_2.glb" id="1_erpu4"]
-[ext_resource type="PackedScene" uid="uid://cvh0fwg53wpus" path="res://car/car.tscn" id="2_5pjkc"]
+[ext_resource type="PackedScene" uid="uid://cvh0fwg53wpus" path="res://failed/car.tscn" id="2_5pjkc"]
 [ext_resource type="Script" path="res://car/Camera3D.gd" id="3_eohru"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4ppva"]

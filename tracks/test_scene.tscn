@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dov4h4ifh60v7"]
 
+[ext_resource type="PackedScene" uid="uid://s3h57x2gxwxo" path="res://car/Player.tscn" id="1_58jhf"]
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_tlv30"]
-[ext_resource type="Script" path="res://car/Camera3D.gd" id="2_bjt2j"]
 [ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="4_vgadf"]
 [ext_resource type="Script" path="res://items/resources/item.gd" id="5_bisl3"]
 [ext_resource type="Script" path="res://items/laser/itemlaser.gd" id="6_phvoy"]
@@ -28,10 +28,10 @@ uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8ah1i"]
 material = SubResource("StandardMaterial3D_cv6gg")
-size = Vector2(50, 50)
+size = Vector2(500, 500)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cvbi4"]
-size = Vector3(50, 0.5, 50)
+size = Vector3(500, 0.5, 500)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj28r"]
 albedo_texture = ExtResource("1_tlv30")
@@ -53,39 +53,15 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pk4ow")
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 6)
-script = ExtResource("2_bjt2j")
-offset = Vector3(2.08165e-12, 3, 4)
-target = NodePath("")
-
 [node name="Item Boxes" type="Node3D" parent="."]
+visible = false
 
 [node name="item_box" parent="Item Boxes" instance=ExtResource("4_vgadf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -8.98397)
 items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
 
-[node name="item_box3" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -32.5632)
-
 [node name="item_box2" parent="Item Boxes" instance=ExtResource("4_vgadf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -71.5363)
-items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
-
-[node name="item_box4" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -54.8105)
-items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
-
-[node name="item_box5" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -43.2963)
-items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
-
-[node name="item_box6" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -35.8126)
-items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
-
-[node name="item_box7" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -23.5754)
 items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
 
 [node name="item_box8" parent="Item Boxes" instance=ExtResource("4_vgadf")]
@@ -104,50 +80,6 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
 shape = SubResource("BoxShape3D_cvbi4")
 
-[node name="Ground2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
-mesh = SubResource("PlaneMesh_8ah1i")
-skeleton = NodePath("../..")
-
-[node name="Ground" type="StaticBody3D" parent="Walls/Ground2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Ground2/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
-shape = SubResource("BoxShape3D_cvbi4")
-
-[node name="Ground3" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -75.1896)
-mesh = SubResource("PlaneMesh_8ah1i")
-skeleton = NodePath("../Ground2")
-
-[node name="Ground" type="StaticBody3D" parent="Walls/Ground3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Ground3/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
-shape = SubResource("BoxShape3D_cvbi4")
-
-[node name="Ground4" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 25.0357, 0, -50.4817)
-mesh = SubResource("PlaneMesh_8ah1i")
-skeleton = NodePath("../Ground2")
-
-[node name="Ground" type="StaticBody3D" parent="Walls/Ground4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Ground4/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
-shape = SubResource("BoxShape3D_cvbi4")
-
-[node name="Ground5" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, -24.8102, 0, -50.471)
-mesh = SubResource("PlaneMesh_8ah1i")
-skeleton = NodePath("../Ground2")
-
-[node name="Ground" type="StaticBody3D" parent="Walls/Ground5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Ground5/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
-shape = SubResource("BoxShape3D_cvbi4")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 0.969923, -0.243412, 0, 0.243412, 0.969923, 13, 0, 0)
 mesh = SubResource("BoxMesh_jugg0")
@@ -157,3 +89,6 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_md76x")
+
+[node name="Player2" parent="." instance=ExtResource("1_58jhf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4897, 0, 0)

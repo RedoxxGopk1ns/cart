@@ -1,7 +1,7 @@
 extends Node
 
 @onready var multiplayer_ui = $UI/Multiplayer
-const PLAYER = preload("res://car/car.tscn")
+const PLAYER = preload("res://player/Player.tscn")
 var peer = ENetMultiplayerPeer.new()
 
 

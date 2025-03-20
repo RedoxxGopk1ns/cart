@@ -1,13 +1,18 @@
 extends VehicleBody3D
 
 @export var CC = 200
-@export var Accelaration =  20
+@export var Accelaration =  10
 
-var steer_angle =  deg_to_rad(30)
-var steer_speed = 3
+var steer_angle =  deg_to_rad(10)
+var steer_speed = 2
 
 var brake_power = 40
 var brake_speed = 40
+
+@export var player_id : int = -1
+
+
+
 
 func _physics_process(delta: float) -> void:
 	#var throttle_input = Input.get_axis("brake", "accelerate")

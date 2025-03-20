@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dov4h4ifh60v7"]
+[gd_scene load_steps=17 format=3 uid="uid://dov4h4ifh60v7"]
 
-[ext_resource type="PackedScene" uid="uid://s3h57x2gxwxo" path="res://car/Player.tscn" id="1_58jhf"]
+[ext_resource type="PackedScene" uid="uid://s3h57x2gxwxo" path="res://player/Player.tscn" id="1_58jhf"]
+[ext_resource type="Script" path="res://multiplayer/multiplayer_controls.gd" id="1_hqg1j"]
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_tlv30"]
 [ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="4_vgadf"]
 [ext_resource type="Script" path="res://items/resources/item.gd" id="5_bisl3"]
@@ -45,6 +46,7 @@ size = Vector3(4, 2, 8)
 data = PackedVector3Array(-2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -1, 4, 2, 1, -4, -2, 1, -4, 2, -1, -4, -2, 1, -4, -2, -1, -4, 2, -1, -4, 2, 1, 4, 2, 1, -4, 2, -1, 4, 2, 1, -4, 2, -1, -4, 2, -1, 4, -2, 1, -4, -2, 1, 4, -2, -1, -4, -2, 1, 4, -2, -1, 4, -2, -1, -4, 2, 1, 4, -2, 1, 4, 2, 1, -4, -2, 1, 4, -2, 1, -4, 2, 1, -4, -2, -1, 4, 2, -1, 4, -2, -1, -4, 2, -1, 4, 2, -1, -4, -2, -1, -4)
 
 [node name="TestScene" type="Node3D"]
+script = ExtResource("1_hqg1j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -54,7 +56,6 @@ shadow_enabled = true
 environment = SubResource("Environment_pk4ow")
 
 [node name="Item Boxes" type="Node3D" parent="."]
-visible = false
 
 [node name="item_box" parent="Item Boxes" instance=ExtResource("4_vgadf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -8.98397)
@@ -90,5 +91,5 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_md76x")
 
-[node name="Player2" parent="." instance=ExtResource("1_58jhf")]
+[node name="Player" parent="." instance=ExtResource("1_58jhf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4897, 0, 0)

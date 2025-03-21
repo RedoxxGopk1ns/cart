@@ -346,7 +346,7 @@ center_of_mass_mode = 1
 script = ExtResource("1_gfitg")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.73862, 0.242012, -0.629182, 0, 0.933336, 0.359003, 0.674122, -0.265167, 0.689381, -2.75613, 1.90478, 3.41696)
+transform = Transform3D(1, 0, 0, 0, 0.986524, 0.163619, 0, -0.163619, 0.986524, 0, 1.9685, 4.41375)
 
 [node name="body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4545e-14, 0.2, 0)

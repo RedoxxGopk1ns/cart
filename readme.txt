@@ -1,13 +1,22 @@
-add collider boxes 
-fix layers
-make items hit
-add stun
-make beta track
-make green shell(nees the tree of the current track)
-improve active item array iteration( make it safe for spamming)
+Multiplayer:
+	a basic menu for determining how many players, to create viewports, set cameras, make inputs,
+	make only one window take inputs
+	make windows appear and move around as they would in local multi(i.e. split screen for 2,3,4 pl)
+
+Items:
+	make items hit
+	add stun
+	make green shell(nees the tree of the current track)
+	improve active item array iteration( make it safe for spamming)
+
+Physics:
+	add collider boxes 
+	fix layers
+	clamp top speed
+	lock rotations axis. Make collisions not rotate the car.
+	add drift
+
 
 ::other::
-fix controller L1 use item
-make both windows work at the same time
-clamp top speed
-make camera work
+make beta track
+make camera smooth

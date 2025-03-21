@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvd5e4yvggukj"]
+
+[ext_resource type="Script" path="res://multiplayer/window.gd" id="1_i7lj4"]
+
+[node name="Window" type="Window"]
+auto_translate_mode = 1
+handle_input_locally = false
+initial_position = 1
+size = Vector2i(1280, 720)
+script = ExtResource("1_i7lj4")

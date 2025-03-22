@@ -4,19 +4,17 @@ Multiplayer:
 	make windows appear and move around as they would in local multi(i.e. split screen for 2,3,4 pl)
 
 Items:
-	make items hit
-	add stun
-	make green shell(nees the tree of the current track)
+	4/make green shell(nees the tree of the current track)
 	improve active item array iteration( make it safe for spamming)
 
 Physics:
 	add collider boxes 
 	fix layers
-	clamp top speed
+	3/clamp top speed(use graphs for torque)
 	lock rotations axis. Make collisions not rotate the car.
 	add drift
 
 
 ::other::
-make beta track
 make camera smooth
+when using 2 of the same item delete the older one

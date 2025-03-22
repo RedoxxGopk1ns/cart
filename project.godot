@@ -11,15 +11,19 @@ config_version=5
 [application]
 
 config/name="failed hitbox"
-run/main_scene="res://main.tscn"
+run/main_scene="res://tracks/track_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1344
+window/size/viewport_height=756
 window/subwindows/embed_subwindows=false
 window/dpi/allow_hidpi=false
+
+[global_group]
+
+Player=""
 
 [input]
 

@@ -1,36 +1,19 @@
-[gd_scene load_steps=29 format=4 uid="uid://s3h57x2gxwxo"]
+[gd_scene load_steps=31 format=4 uid="uid://bqleyfdyqox0"]
 
-[ext_resource type="Script" path="res://player/Player.gd" id="1_gfitg"]
-[ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="2_apaot"]
-[ext_resource type="FontFile" uid="uid://chyblbs03m0wh" path="res://assets/hollowpoint.ttf" id="2_q2kd2"]
-[ext_resource type="Script" path="res://items/boost/itemboost.gd" id="3_adgl7"]
-[ext_resource type="Script" path="res://player/speed_label.gd" id="3_bilyp"]
-[ext_resource type="Script" path="res://items/laser/itemlaser.gd" id="3_fai32"]
-[ext_resource type="Script" path="res://player/item_label.gd" id="6_vg1t3"]
+[ext_resource type="Script" path="res://tracks/track.gd" id="1_eku18"]
+[ext_resource type="PackedScene" uid="uid://s3h57x2gxwxo" path="res://player/Player.tscn" id="1_obdq6"]
+[ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_pgmcf"]
+[ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="2_lo3ci"]
+[ext_resource type="Script" path="res://player/dummy.gd" id="3_5d7ai"]
+[ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="3_ecoe7"]
+[ext_resource type="Script" path="res://items/resources/dummy_IM.gd" id="5_phkoo"]
 
-[sub_resource type="Resource" id="Resource_c6gob"]
-script = ExtResource("3_fai32")
-
-[sub_resource type="Resource" id="Resource_6t4pk"]
-script = ExtResource("3_adgl7")
-speed_percent = 0.2
-duration = 1.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_ose7b"]
-font = ExtResource("2_q2kd2")
-font_size = 136
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_87vlt"]
-font = ExtResource("2_q2kd2")
-font_size = 56
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_byvnu"]
-font = ExtResource("2_q2kd2")
-font_size = 56
+[sub_resource type="Curve3D" id="Curve3D_bitop"]
+_data = {
+"points": PackedVector3Array(-42.146, 0, 16.1531, 42.146, 0, -16.1531, 13.0913, 0, -88.2238, -29.8994, 0, -5.75978, 29.8994, 0, 5.75978, 76.2709, 0, -49.5192, 7.29292, 0, -25.5842, -7.29292, 0, 25.5842, 107.007, 0, 14.2296, 39.6116, 0, 1.49976, -39.6116, 0, -1.49976, -11.1192, 0, 59.1828, 31.1557, 0, 0.132923, -31.1557, 0, -0.132923, -58.0569, 0, 7.39943, 10.7605, 0, 27.6186, -10.7605, 0, -27.6186, -128.409, 0, 20.445, -14.3433, 0, 10.3648, 14.3433, 0, -10.3648, -99.0018, 0, -57.864, -22.4048, 0, 18.4263, 22.4048, 0, -18.4263, -49.5192, 0, -89.3622, -14.9714, 0, 5.44419, 14.9714, 0, -5.44419, 13.0913, 0, -88.2238),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w5pwl"]
 points = PackedVector3Array(0.65, 0.19998, 1.15, 0.54998, 0.399961, 1.25, 0.620605, 0.19998, 1.2205, 0.65, 0, 1.15, 0.65, 0.375734, 0.935596, -0.550108, 0.399961, 1.25, 0.54998, 0, 1.25, 0.65, 0.437666, 0.854777, 0.54998, 0.599941, 0.84998, 0.449961, 0.9, 0.549966, 0.620605, 0, 1.2205, 0.65, 0, -1.10023, -0.550108, 0.599941, 0.84998, -0.65, 0.437666, 0.854777, -0.65, 0.375734, 0.935596, -0.65, 0.19998, 1.15, -0.620732, 0.19998, 1.2205, -0.550108, 0, 1.25, -0.450088, 0.9, 0.549966, 0.65, 0.476693, 0.760767, 0.65, 0.489996, 0.659803, 0.65, 0.599941, -0.322979, 0.449961, 0.9, -0.150069, 0.620605, 0, -1.17074, 0.65, 0.19998, -1.10023, -0.65, 0.476693, 0.760767, -0.65, 0, 1.15, -0.620732, 0, 1.2205, -0.450088, 0.9, -0.150069, -0.65, 0.599941, -0.322979, -0.65, 0.489996, 0.659803, 0.65, 0.599941, -0.422984, 0.54998, 0.54999, -0.900225, 0.54998, 0, -1.2, 0.620605, 0.19998, -1.17074, 0.65, 0.375734, -0.935958, -0.65, 0, -1.10023, -0.550108, 0.54999, -0.900225, -0.65, 0.599941, -0.422984, 0.65, 0.476693, -0.76113, 0.65, 0.437666, -0.855139, 0.54998, 0.399961, -1.15012, -0.550108, 0, -1.2, 0.54998, 0.19998, -1.2, -0.65, 0.19998, -1.10023, -0.620732, 0, -1.17074, -0.550108, 0.399961, -1.15012, -0.65, 0.437666, -0.855139, -0.65, 0.476693, -0.76113, -0.550108, 0.19998, -1.2, -0.65, 0.375734, -0.935958, -0.620732, 0.19998, -1.17074)
@@ -371,99 +354,117 @@ shadow_mesh = SubResource("ArrayMesh_cfemn")
 [sub_resource type="BoxMesh" id="BoxMesh_cwp0s"]
 size = Vector3(0.355, 0.145, 0.54)
 
-[node name="Player" type="VehicleBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv6gg"]
+albedo_texture = ExtResource("1_pgmcf")
+uv1_scale = Vector3(10, 10, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q8ayq"]
+material = SubResource("StandardMaterial3D_cv6gg")
+size = Vector2(500, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qxmh6"]
+size = Vector3(500, 0.5, 500)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4me1e"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pcewp"]
+sky_material = SubResource("ProceduralSkyMaterial_4me1e")
+
+[sub_resource type="Environment" id="Environment_oqcgo"]
+background_mode = 2
+sky = SubResource("Sky_pcewp")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Track 1" type="Node3D"]
+script = ExtResource("1_eku18")
+spawn_location = Vector3(-36.1778, 0.636502, 39.1949)
+spawn_rotation = Vector3(0, 0.375473, 0)
+
+[node name="item_box" parent="." instance=ExtResource("2_lo3ci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4389, 1.01774, 20.8186)
+
+[node name="item_box2" parent="." instance=ExtResource("2_lo3ci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85607, 1.09912, -91.2426)
+
+[node name="item_box3" parent="." instance=ExtResource("2_lo3ci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.88274, 1.13415, 59.8595)
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.876486, 0)
+curve = SubResource("Curve3D_bitop")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95627, 0)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, -5, 0.2, 5, 0.2, 5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95627, 0)
+use_collision = true
+polygon = PackedVector2Array(-5, 0, -5, 1, -4.5, 1, -4.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95627, 0)
+use_collision = true
+polygon = PackedVector2Array(5, 0, 5, 1, 4.5, 1, 4.5, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="Dummy" type="VehicleBody3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4278, 0, 33.3368)
 collision_layer = 2
 collision_mask = 3
 center_of_mass_mode = 1
-script = ExtResource("1_gfitg")
+script = ExtResource("3_5d7ai")
 
-[node name="ItemManager" parent="." instance=ExtResource("2_apaot")]
-item1 = SubResource("Resource_c6gob")
-item2 = SubResource("Resource_6t4pk")
+[node name="ItemManager" parent="Dummy" instance=ExtResource("3_ecoe7")]
+script = ExtResource("5_phkoo")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.986524, 0.163619, 0, -0.163619, 0.986524, 0, 1.9685, 4.41375)
-
-[node name="Control" type="Control" parent="Camera3D"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Speedometer" type="MarginContainer" parent="Camera3D/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.8
-anchor_top = 0.719
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Camera3D/Control/Speedometer"]
-layout_mode = 2
-
-[node name="SpeedLabel" type="Label" parent="Camera3D/Control/Speedometer/HBoxContainer" node_paths=PackedStringArray("player")]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "34"
-label_settings = SubResource("LabelSettings_ose7b")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("3_bilyp")
-player = NodePath("../../../../..")
-
-[node name="MarginContainer" type="MarginContainer" parent="Camera3D/Control/Speedometer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Camera3D/Control/Speedometer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-text = "M/S"
-label_settings = SubResource("LabelSettings_87vlt")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Camera3D/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.17
-anchor_bottom = 0.231
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera3D/Control/MarginContainer"]
-layout_mode = 2
-
-[node name="ItemLabel1" type="Label" parent="Camera3D/Control/MarginContainer/VBoxContainer" node_paths=PackedStringArray("IM")]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_byvnu")
-horizontal_alignment = 1
-script = ExtResource("6_vg1t3")
-IM = NodePath("../../../../../ItemManager")
-ItemNumber = 1
-
-[node name="ItemLabel2" type="Label" parent="Camera3D/Control/MarginContainer/VBoxContainer" node_paths=PackedStringArray("IM")]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_byvnu")
-horizontal_alignment = 1
-script = ExtResource("6_vg1t3")
-IM = NodePath("../../../../../ItemManager")
-ItemNumber = 2
-
-[node name="body" type="CollisionShape3D" parent="."]
+[node name="body" type="CollisionShape3D" parent="Dummy"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4545e-14, 0.2, 0)
 shape = SubResource("ConvexPolygonShape3D_w5pwl")
 
-[node name="body" type="MeshInstance3D" parent="body"]
+[node name="body" type="MeshInstance3D" parent="Dummy/body"]
 mesh = SubResource("ArrayMesh_3t7pw")
 skeleton = NodePath("")
 
-[node name="spoiler" type="MeshInstance3D" parent="body/body"]
+[node name="spoiler" type="MeshInstance3D" parent="Dummy/body/body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.77529e-15, 0.4, 1.06869)
 mesh = SubResource("ArrayMesh_h0kbc")
 skeleton = NodePath("")
 
-[node name="wheel_FL" type="VehicleWheel3D" parent="."]
+[node name="wheel_FL" type="VehicleWheel3D" parent="Dummy"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.475, 0.3, -0.66)
 use_as_steering = true
 wheel_radius = 0.3
@@ -471,12 +472,12 @@ wheel_rest_length = 0.05
 suspension_travel = 0.1
 suspension_stiffness = 100.0
 
-[node name="wheel_FL2" type="MeshInstance3D" parent="wheel_FL"]
+[node name="wheel_FL2" type="MeshInstance3D" parent="Dummy/wheel_FL"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.144667, 0, -5.96046e-08)
 mesh = SubResource("ArrayMesh_h5vuo")
 skeleton = NodePath("")
 
-[node name="wheel_FR" type="VehicleWheel3D" parent="."]
+[node name="wheel_FR" type="VehicleWheel3D" parent="Dummy"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.475, 0.3, -0.66)
 use_as_steering = true
 wheel_radius = 0.3
@@ -484,12 +485,12 @@ wheel_rest_length = 0.05
 suspension_travel = 0.1
 suspension_stiffness = 100.0
 
-[node name="wheel_FR2" type="MeshInstance3D" parent="wheel_FR"]
+[node name="wheel_FR2" type="MeshInstance3D" parent="Dummy/wheel_FR"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.175, 0, 5.96046e-08)
 mesh = SubResource("ArrayMesh_h5vuo")
 skeleton = NodePath("")
 
-[node name="wheel_BL" type="VehicleWheel3D" parent="."]
+[node name="wheel_BL" type="VehicleWheel3D" parent="Dummy"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.475, 0.3, 0.66)
 use_as_traction = true
 wheel_radius = 0.3
@@ -497,15 +498,15 @@ wheel_rest_length = 0.05
 suspension_travel = 0.1
 suspension_stiffness = 100.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="wheel_BL"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy/wheel_BL"]
 mesh = SubResource("BoxMesh_cwp0s")
 
-[node name="wheel_BL2" type="MeshInstance3D" parent="wheel_BL"]
+[node name="wheel_BL2" type="MeshInstance3D" parent="Dummy/wheel_BL"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16834, 0, -5.96046e-08)
 mesh = SubResource("ArrayMesh_h5vuo")
 skeleton = NodePath("")
 
-[node name="wheel_BR" type="VehicleWheel3D" parent="."]
+[node name="wheel_BR" type="VehicleWheel3D" parent="Dummy"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.475, 0.3, 0.66)
 use_as_traction = true
 wheel_radius = 0.3
@@ -513,10 +514,30 @@ wheel_rest_length = 0.05
 suspension_travel = 0.1
 suspension_stiffness = 100.0
 
-[node name="wheel_BR2" type="MeshInstance3D" parent="wheel_BR"]
+[node name="wheel_BR2" type="MeshInstance3D" parent="Dummy/wheel_BR"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.175, 0, 5.96046e-08)
 mesh = SubResource("ArrayMesh_h5vuo")
 skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="wheel_BR"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy/wheel_BR"]
 mesh = SubResource("BoxMesh_cwp0s")
+
+[node name="Player" parent="." instance=ExtResource("1_obdq6")]
+transform = Transform3D(0.999968, 0, 0.0079414, 0, 1, 0, -0.0079414, 0, 0.999968, -10.5423, 0.636502, 39.1949)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00478959, 0, -0.000242233)
+mesh = SubResource("PlaneMesh_q8ayq")
+
+[node name="Ground" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-12)
+shape = SubResource("BoxShape3D_qxmh6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oqcgo")

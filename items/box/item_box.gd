@@ -28,7 +28,7 @@ func _on_body_entered(player: RigidBody3D) -> void:
 	set_deferred("monitoring",false)
 	set_deferred("monitored",false)
 	
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(2).timeout
 	
 	mesh.visible = true
 	set_deferred("monitoring",true)

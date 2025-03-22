@@ -3,20 +3,31 @@ extends VehicleBody3D
 
 
 @export var player_id : int = -1
-@export var CC = 200
-@export var Accelaration =  10
+@export var CC = 200 * 60
+@export var Accelaration =  200 * 60
+@export var steer_angle =  deg_to_rad(6)
+@export var steer_speed = 2
+@export var brake_power = 300 * 60
+@export var brake_speed = 5000
+
 
 @onready var camera : Camera3D = $Camera3D
+@onready var itemManager : ItemManager = $ItemManager
 
-var steer_angle =  deg_to_rad(8)
-var steer_speed = 3
+var immune : bool = false :
+	set(value):
+		if value == true :
+			immune = true
+			await itemManager.get_tree().create_timer(2).timeout
+			immune = false
 
-var brake_power = 80
-var brake_speed = 80
+
 
 var buttons : Dictionary
 var brake_button : String
 var accelerate_button : String
+var steer_right_button : String
+var steer_left_button : String
 
 func _ready() -> void:
 	set_input_id(player_id)
@@ -25,14 +36,29 @@ func set_input_id(i : int) -> void:
 	player_id = i
 	brake_button = "brakePL" + str(i)
 	accelerate_button = "acceleratePL" + str(i)
+	steer_right_button = "steer_rightPL" + str(i)
+	steer_left_button = "steer_leftPL" + str(i)
+
 
 func _physics_process(delta: float) -> void:
-	#var throttle_input = Input.get_axis("brake", "accelerate")
-	#engine_force = lerp(engine_force, throttle_input * CC, Accelaration * delta)
-	engine_force = Input.get_axis(brake_button, accelerate_button) * CC
-	
+	var AB_axis : float  = Input.get_axis("brake","accelerate")#Input.get_axis(brake_button, accelerate_button)
+	if AB_axis>0:
+		engine_force = AB_axis * Accelaration * delta
+	if AB_axis<0:
+		engine_force = AB_axis * brake_power * delta
+	if AB_axis == 0:
+		engine_force = 0
+	#steering = move_toward(steering, Input.get_axis(steer_right_button,steer_left_button) * steer_angle, delta * steer_speed)
 	steering = move_toward(steering, Input.get_axis("steer_right","steer_left") * steer_angle, delta * steer_speed)
+	itemManager.update(delta)
+	#if Input.is_action_pressed("debug_button"):
+		#hitstun(1)
 	
-	
-	#var brake_input =  Input.get_action_strength("brake")
-	#brake = lerp(brake, brake_input * brake_power, brake_speed * delta)
+
+func hitstun(duration : float)->void:
+	#print(immune)
+	if immune == false:
+		#print("stunned")
+		linear_velocity = Vector3.ZERO
+		immune = true
+	else : return

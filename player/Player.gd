@@ -10,6 +10,7 @@ extends VehicleBody3D
 @export var brake_power = 300 * 60
 @export var brake_speed = 5000
 
+@onready var track : Node3D = get_parent()
 
 @onready var camera : Camera3D = $Camera3D
 @onready var itemManager : ItemManager = $ItemManager
@@ -41,9 +42,11 @@ func set_input_id(i : int) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var AB_axis : float  = Input.get_axis("brake","accelerate")#Input.get_axis(brake_button, accelerate_button)
+	#var AB_axis : float  = Input.get_axis(brake_button, accelerate_button)
+	var AB_axis : float  = Input.get_axis("brake","accelerate")
 	if AB_axis>0:
 		engine_force = AB_axis * Accelaration * delta
+		#linear_velocity = linear_velocity.clampf(0,100)
 	if AB_axis<0:
 		engine_force = AB_axis * brake_power * delta
 	if AB_axis == 0:

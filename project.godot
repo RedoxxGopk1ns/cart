@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="failed hitbox"
+config/name="Kart Game"
 run/main_scene="res://tracks/track_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+
+[autoload]
+
+Global="*res://Main/GLOBAL.gd"
 
 [display]
 

@@ -2,23 +2,30 @@
 
 [ext_resource type="Script" path="res://items/green shell/green_shell.gd" id="1_rds3s"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_8oj3t"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_uw2yw"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_f1354"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wq87o"]
-radius = 0.8
 
-[node name="GreenShell" type="RigidBody3D"]
+[node name="GreenShell" type="CharacterBody3D"]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_rds3s")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_8oj3t")
+shape = SubResource("SphereShape3D_uw2yw")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
 mesh = SubResource("SphereMesh_f1354")
+skeleton = NodePath("../..")
 
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_wq87o")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -0.7, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

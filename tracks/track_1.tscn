@@ -1,7 +1,6 @@
-[gd_scene load_steps=34 format=4 uid="uid://bqleyfdyqox0"]
+[gd_scene load_steps=33 format=4 uid="uid://bqleyfdyqox0"]
 
 [ext_resource type="Script" path="res://tracks/track.gd" id="1_eku18"]
-[ext_resource type="PackedScene" uid="uid://s3h57x2gxwxo" path="res://player/Player.tscn" id="1_obdq6"]
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_pgmcf"]
 [ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="2_lo3ci"]
 [ext_resource type="Script" path="res://player/dummy.gd" id="3_5d7ai"]
@@ -392,7 +391,6 @@ data = PackedVector3Array(-2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -
 [node name="Track 1" type="Node3D"]
 script = ExtResource("1_eku18")
 spawn_location = Vector3(-36.1778, 0.636502, 39.1949)
-spawn_rotation = Vector3(0, 0.375473, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -473,8 +471,9 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="Dummy" type="VehicleBody3D" parent="." groups=["Player"]]
+[node name="Dummy" type="VehicleBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4859, 0, 33.3368)
+visible = false
 collision_layer = 2
 collision_mask = 3
 center_of_mass_mode = 1
@@ -553,9 +552,6 @@ skeleton = NodePath("")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Dummy/wheel_BR"]
 mesh = SubResource("BoxMesh_cwp0s")
-
-[node name="Player" parent="." instance=ExtResource("1_obdq6")]
-transform = Transform3D(0.0338532, 0, -0.999426, 0, 1, 0, 0.999426, 0, 0.0338532, -224.615, 0.622937, 90.3363)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.0345881, -0.385231, -0.922172, -0.0135076, 0.92282, -0.384995, 0.99931, -0.000859926, -0.0371222, 13, 0.404714, 30.7356)

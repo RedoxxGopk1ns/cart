@@ -18,6 +18,7 @@ func _ready() -> void:
 	
 
 func _on_joy_connection_changed(device: int, connected: bool):
+	
 	var players = Input.get_connected_joypads()
 	if connected:
 		players_in_game[device] = (prefix_action + str(device))  #{0:PL0}
@@ -62,7 +63,10 @@ func erase_joypad_events():
 func add_new_player(i : int)->void:
 	var new_player : Player = PlayerScene.instantiate()
 	new_player.player_id = i
-	current_track.add_child(new_player)
+	new_player.position = Global.Track.spawn_location
+	new_player.rotation.y = Global.Track.spawn_rotation
+	new_player.set_input_id(i)
+	Global.Track.add_child(new_player)
 	if i!=0:
 		var new_window : LocalMultiWindow = LocalMultiWindowScene.instantiate()
 		new_window.car = new_player

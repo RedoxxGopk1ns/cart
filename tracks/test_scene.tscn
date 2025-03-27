@@ -1,12 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://dov4h4ifh60v7"]
+[gd_scene load_steps=13 format=3 uid="uid://dov4h4ifh60v7"]
 
-[ext_resource type="PackedScene" uid="uid://s3h57x2gxwxo" path="res://player/Player.tscn" id="1_mxvjq"]
 [ext_resource type="Script" path="res://tracks/track.gd" id="1_reup4"]
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_tlv30"]
-[ext_resource type="PackedScene" uid="uid://c5wq5buynlo6o" path="res://items/green shell/green_shell.tscn" id="3_vi24y"]
-[ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="4_vgadf"]
-[ext_resource type="Script" path="res://items/resources/item.gd" id="5_bisl3"]
-[ext_resource type="Script" path="res://items/laser/itemlaser.gd" id="6_phvoy"]
+[ext_resource type="PackedScene" uid="uid://20py0tarjqo6" path="res://player/Test/Lepra.tscn" id="2_o0gpf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_74a4f"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -20,9 +16,6 @@ background_mode = 2
 sky = SubResource("Sky_yi0md")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="Resource" id="Resource_4fuk7"]
-script = ExtResource("6_phvoy")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cv6gg"]
 albedo_texture = ExtResource("1_tlv30")
@@ -49,11 +42,8 @@ data = PackedVector3Array(-2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -
 [node name="TestScene" type="Node3D"]
 script = ExtResource("1_reup4")
 
-[node name="Player" parent="." instance=ExtResource("1_mxvjq")]
-transform = Transform3D(0.106663, 0, -0.994295, 0, 1, 0, 0.994295, 0, 0.106663, -0.193289, 0, 0.627164)
-
-[node name="GreenShell" parent="." instance=ExtResource("3_vi24y")]
-transform = Transform3D(0.999021, 0, -0.0442299, 0, 1, 0, 0.0442299, 0, 0.999021, 83.2712, 5.87899, 13.4429)
+[node name="Player" parent="." instance=ExtResource("2_o0gpf")]
+transform = Transform3D(0.998993, 0, 0.0448748, 0, 1, 0, -0.0448748, 0, 0.998993, 12.9207, -0.0834713, 6.35695)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -64,21 +54,11 @@ environment = SubResource("Environment_pk4ow")
 
 [node name="Item Boxes" type="Node3D" parent="."]
 
-[node name="item_box" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -8.98397)
-items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
-
-[node name="item_box2" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -71.5363)
-items_list = Array[ExtResource("5_bisl3")]([SubResource("Resource_4fuk7")])
-
-[node name="item_box8" parent="Item Boxes" instance=ExtResource("4_vgadf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562106, -17.2604)
-
 [node name="Walls" type="Node3D" parent="."]
 
 [node name="Ground" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00478959, 0, -0.000242233)
+layers = 3
 mesh = SubResource("PlaneMesh_8ah1i")
 skeleton = NodePath("../..")
 
@@ -89,7 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.25, 2.08165e-
 shape = SubResource("BoxShape3D_cvbi4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 0.999732, -0.0231586, 0, 0.0231586, 0.999732, 13, 0.404714, 0)
+transform = Transform3D(1, 0, 0, 0, 0.978882, -0.204428, 0, 0.204428, 0.978882, 13, -0.412583, 0)
 mesh = SubResource("BoxMesh_jugg0")
 skeleton = NodePath("../..")
 

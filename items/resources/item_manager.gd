@@ -9,9 +9,10 @@ extends Node3D
 func _unhandled_input(event: InputEvent) -> void:
 	#if !is_multiplayer_authority():
 		#return
-	if event.is_action_pressed(player.use_item_button):
+	#if event.is_action_pressed(player.use_item_button):
+		#useItem()
+	if event.is_action_pressed("use_item"):
 		useItem()
-
 
 
 func useItem():

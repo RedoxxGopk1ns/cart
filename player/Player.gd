@@ -46,8 +46,8 @@ func set_input_id(i : int) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var AB_axis : float  = Input.get_axis(brake_button, accelerate_button)
-	#var AB_axis : float  = Input.get_axis("brake","accelerate")
+	#var AB_axis : float  = Input.get_axis(brake_button, accelerate_button)
+	var AB_axis : float  = Input.get_axis("brake","accelerate")
 	if AB_axis>0:
 		engine_force = AB_axis * Accelaration * delta
 		#linear_velocity = linear_velocity.clampf(0,100)
@@ -55,8 +55,8 @@ func _physics_process(delta: float) -> void:
 		engine_force = AB_axis * brake_power * delta
 	if AB_axis == 0:
 		engine_force = 0
-	steering = move_toward(steering, Input.get_axis(steer_right_button,steer_left_button) * steer_angle, delta * steer_speed)
-	#steering = move_toward(steering, Input.get_axis("steer_right","steer_left") * steer_angle, delta * steer_speed)
+	#steering = move_toward(steering, Input.get_axis(steer_right_button,steer_left_button) * steer_angle, delta * steer_speed)
+	steering = move_toward(steering, Input.get_axis("steer_right","steer_left") * steer_angle, delta * steer_speed)
 	itemManager.update(delta)
 	#if Input.is_action_pressed("debug_button"):
 		#hitstun(1)

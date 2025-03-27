@@ -1,11 +1,12 @@
-[gd_scene load_steps=33 format=4 uid="uid://bqleyfdyqox0"]
+[gd_scene load_steps=34 format=4 uid="uid://bqleyfdyqox0"]
 
 [ext_resource type="Script" path="res://tracks/track.gd" id="1_eku18"]
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_pgmcf"]
 [ext_resource type="PackedScene" uid="uid://bo1any30nnn4h" path="res://items/box/item_box.tscn" id="2_lo3ci"]
-[ext_resource type="Script" path="res://player/dummy.gd" id="3_5d7ai"]
+[ext_resource type="Script" path="res://player/dummy/dummy.gd" id="3_5d7ai"]
 [ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="3_ecoe7"]
 [ext_resource type="Script" path="res://items/resources/dummy_IM.gd" id="5_phkoo"]
+[ext_resource type="PackedScene" uid="uid://20py0tarjqo6" path="res://player/Test/Lepra.tscn" id="7_ogjpu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4me1e"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -563,3 +564,6 @@ collision_layer = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fdfpq")
+
+[node name="Hover" parent="." instance=ExtResource("7_ogjpu")]
+transform = Transform3D(-0.0139447, 0, -0.999903, 0, 1, 0, 0.999903, 0, -0.0139447, 3.24477, 0.370151, 59.5931)

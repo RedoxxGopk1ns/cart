@@ -9,11 +9,11 @@ Items:
 	improve active item array iteration( make it safe for spamming)
 
 Physics:
+	1/ make new car. new rotation function
+	2/ fix speed gauges
 	add collider boxes 
 	fix physics layers
-	boost compresses car
 	(use graphs for torque)
-	lock rotations axis. Make collisions not rotate the car.
 	add drift
 
 Tracks:

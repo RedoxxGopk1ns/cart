@@ -43,7 +43,7 @@ data = PackedVector3Array(-2, 1, 4, 2, 1, 4, -2, -1, 4, 2, 1, 4, 2, -1, 4, -2, -
 script = ExtResource("1_reup4")
 
 [node name="Player" parent="." instance=ExtResource("2_o0gpf")]
-transform = Transform3D(0.998993, 0, 0.0448748, 0, 1, 0, -0.0448748, 0, 0.998993, 12.9207, -0.0834713, 6.35695)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7532, 0.687978, 10.0051)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)

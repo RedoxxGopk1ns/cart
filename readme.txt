@@ -5,16 +5,16 @@ Multiplayer:
 
 Items:
 	green shell mesh transforms after colliding
-	4/make red shell
+	make red shell
 	improve active item array iteration( make it safe for spamming)
 
 Physics:
-	1/ make new car. new rotation function
-	2/ fix speed gauges
+	1/ make the engine an accelarate var using torque curves
+	2/apply force in the direction the car is facing not accounting for rotation in the x axis
+	3/ fix speed gauges
+	4/ add drift
 	add collider boxes 
-	fix physics layers
-	(use graphs for torque)
-	add drift
+	5/clean up code , fix physics layers, organize car node, add itemManager functionality , fix reverse steering
 
 Tracks:
 	add start timer/grid
@@ -25,3 +25,5 @@ Tracks:
 make camera smooth
 when using 2 of the same item delete the older one
 revamp the visuals/ add effects
+
+Made in Godot_4.3-stable for Windows

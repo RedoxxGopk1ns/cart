@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=4 uid="uid://20py0tarjqo6"]
+[gd_scene load_steps=17 format=4 uid="uid://20py0tarjqo6"]
 
 [ext_resource type="Script" path="res://player/Test/Lepra.gd" id="1_2kyhh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uiu2c"]
 friction = 0.0
+
+[sub_resource type="Curve" id="Curve_mth8l"]
+_data = [Vector2(0, 0.010989), 0.0, 23.6841, 0, 0, Vector2(0.0729614, 0.725275), 0.768132, 0.768132, 0, 0, Vector2(0.708154, 0.901099), -0.741179, -0.741179, 0, 0, Vector2(0.969957, 0.340659), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gikdg"]
 size = Vector3(1.185, 1, 2.438)
@@ -265,67 +269,54 @@ top_radius = 0.25
 bottom_radius = 0.25
 height = 0.2
 
-[node name="Hover" type="Node3D"]
-
-[node name="Player" type="RigidBody3D" parent="."]
+[node name="Player" type="RigidBody3D"]
 collision_layer = 3
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_uiu2c")
-linear_damp = 10.0
-angular_damp = 10.0
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 8.0
 script = ExtResource("1_2kyhh")
+turnGraph = SubResource("Curve_mth8l")
 
-[node name="RT_FL" type="RemoteTransform3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.546, 0.258, -0.667)
-remote_path = NodePath("../../FL")
-update_rotation = false
-
-[node name="RT_FR" type="RemoteTransform3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545539, 0.257536, -0.667172)
-remote_path = NodePath("../../FR")
-update_rotation = false
-
-[node name="RT_BL" type="RemoteTransform3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.546, 0.258, 0.693)
-remote_path = NodePath("../../BL")
-update_rotation = false
-
-[node name="RT_BR" type="RemoteTransform3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.546, 0.258, 0.693)
-remote_path = NodePath("../../BR")
-update_rotation = false
-
-[node name="Camera3D" type="Camera3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.986524, 0.163619, 0, -0.163619, 0.986524, 0.388482, 1.9685, 4.41375)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.83708, 0.547081, 0, -0.547081, 0.83708, 0, 2.63397, 3.96273)
 current = true
 
-[node name="body" type="CollisionShape3D" parent="Player"]
+[node name="body" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4545e-14, 0.679519, 0.0162354)
 shape = SubResource("BoxShape3D_gikdg")
 
-[node name="body2" type="MeshInstance3D" parent="Player/body"]
+[node name="body2" type="MeshInstance3D" parent="body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.479519, -0.0162354)
 mesh = SubResource("ArrayMesh_3t7pw")
 skeleton = NodePath("")
 
-[node name="spoiler" type="MeshInstance3D" parent="Player/body/body2"]
+[node name="spoiler" type="MeshInstance3D" parent="body/body2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.77529e-15, 0.4, 1.06869)
 mesh = SubResource("ArrayMesh_h0kbc")
 skeleton = NodePath("")
 
-[node name="FR" type="MeshInstance3D" parent="Player"]
+[node name="FR" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.545539, 0.257536, -0.667172)
 mesh = SubResource("CylinderMesh_yyfv2")
 
-[node name="FL" type="MeshInstance3D" parent="Player"]
+[node name="FL" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.546, 0.258, -0.667)
 mesh = SubResource("CylinderMesh_yyfv2")
 
-[node name="FL" type="RayCast3D" parent="." groups=["Raycasts"]]
+[node name="FrontAxle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.480883, -1.23488)
+
+[node name="FloorRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.397085, 0)
+target_position = Vector3(0, -0.715, 0)
+
+[node name="FL2" type="RayCast3D" parent="." groups=["Raycasts"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.546, 0.258, -0.667)
 target_position = Vector3(0, -0.33, 0)
 
-[node name="FR" type="RayCast3D" parent="." groups=["Raycasts"]]
+[node name="FR2" type="RayCast3D" parent="." groups=["Raycasts"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545539, 0.257536, -0.667172)
 target_position = Vector3(0, -0.33, 0)
 

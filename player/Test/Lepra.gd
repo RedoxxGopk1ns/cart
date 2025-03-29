@@ -3,12 +3,17 @@ extends RigidBody3D
 
 
 @export var player_id : int = -1
-@export var CC = 200
+@export var CC = 22000
 @export var Accelaration =  200
 @export var steer_angle =  30
 @export var brake_power = 300
 @export var slip : float = 0.5
-@export var suspension_force : float = 40
+@export var suspension_force : float = 60
+@export var max_speed : float = 50
+@export var dragCoefficient : float = 1
+@export var turnGraph : Curve
+@export var steer_strength : float = 60
+@export var gravity_force : float = 20
 
 @onready var camera : Camera3D = $Camera3D
 @onready var itemManager : ItemManager 
@@ -16,6 +21,8 @@ extends RigidBody3D
 @onready var FL_wheel : MeshInstance3D = $FL
 @onready var Body_Mesh : MeshInstance3D = $body/body2
 @onready var rays : Array = get_tree().get_nodes_in_group("Raycasts")
+@onready var Front_Axle : Node3D = $FrontAxle
+@onready var FloorRay : RayCast3D = $FloorRay
 
 var collided : bool
 
@@ -35,7 +42,7 @@ var immune : bool = false :
 
 
 #func _ready() -> void:
-	#axis_lock_angular_x = true
+	#
 
 
 func set_input_id(i : int) -> void:
@@ -55,31 +62,42 @@ func _physics_process(delta: float) -> void:
 			var collision_point = ray.get_collision_point()
 			var dist = collision_point.distance_to(ray.global_transform.origin)
 			apply_force(Vector3.UP * (1/dist) * suspension_force * delta,ray.global_transform.origin - global_transform.origin)
-			print(dist)
+			
 		#apply my own central force as  gravity when the car isnt on the groyund
 		#lerp:correcting rotation force as a function of the angle difference of world vector_down and the vehicles rotation
 		#else : apply_force(Vector3.DOWN * 200 * delta,ray.global_transform.origin - global_transform.origin)
+	
+	FloorRay.force_raycast_update()
+	if FloorRay.is_colliding():
+		apply_central_force(-FloorRay.transform.basis.y * gravity_force)
+	else : 
+		apply_torque(5*Vector3(-global_rotation.x,0,-global_rotation.z))
+		apply_central_force(-Global.Track.transform.basis.y * gravity_force * 5)
+	
 	#======================================================================
 	linear_velocity -= linear_velocity * 0.2
 	var AB_axis : float  = Input.get_axis("brake","accelerate")
 	var LR_axis : float = -Input.get_axis("steer_left","steer_right")
 	var z_velocity : float =  linear_velocity.dot(-global_transform.basis.z)
-	var x_velocity : float = linear_velocity.dot(global_transform.basis.x)
+	var sideways_velocity : float = linear_velocity.dot(global_transform.basis.x)
+	var carVelocityRatio : float = abs(z_velocity)/max_speed
+	var dragMagnitude : float = -sideways_velocity * dragCoefficient
 	
-	#z_velocity = velocity.project(-global_transform.basis.z).length()
+	
+	
 	if AB_axis>0:
-		linear_velocity -= FR_wheel.global_transform.basis.z.normalized() * CC * delta
-		
+		apply_central_force(-global_transform.basis.z.normalized() * CC * delta)
+	
 	if AB_axis<0:
-		linear_velocity += FR_wheel.global_transform.basis.z.normalized() * CC * delta
+		apply_central_force(global_transform.basis.z.normalized() * CC * delta)
 	
+	apply_torque(delta * steer_angle * steer_strength * LR_axis * turnGraph.sample(carVelocityRatio) * sin(carVelocityRatio) * Vector3.UP)
 	
-	if abs(z_velocity) > 0.1 :
-		rotate(global_transform.basis.y.normalized(), delta * steer_angle * LR_axis/(2.2 * z_velocity))
+	var dragForce = global_transform.basis.x * dragMagnitude
+	apply_central_force(dragForce)
 	update_model(steer_angle * LR_axis)
 	
-	linear_velocity-=global_transform.basis.x * x_velocity * slip
-	#collided = move_and_slide()
+	
 	
 
 func update_model(angle : float):

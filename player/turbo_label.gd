@@ -3,4 +3,4 @@ extends Label
 @export var player : Player
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	text = str(abs(int(player.z_velocity)))
+	text = str(abs(int(player.drift_time)))

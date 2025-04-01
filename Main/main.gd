@@ -63,13 +63,12 @@ func erase_joypad_events():
 func add_new_player(i : int)->void:
 	var new_player : Player = PlayerScene.instantiate()
 	new_player.player_id = i
-	new_player.position = Global.Track.spawn_location
+	new_player.position = Global.Track.spawn_location + Vector3(i*2,0,0)
 	new_player.rotation.y = Global.Track.spawn_rotation
 	new_player.set_input_id(i)
 	Global.Track.add_child(new_player)
 	if i!=0:
 		var new_window : LocalMultiWindow = LocalMultiWindowScene.instantiate()
-		new_window.car = new_player
 		add_child(new_window)
+		new_window.car = new_player
 		new_window.Update()
-		

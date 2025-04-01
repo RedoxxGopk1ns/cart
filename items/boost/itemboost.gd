@@ -1,7 +1,7 @@
 class_name ItemBoostResource
 extends ItemResource
 
-@export var speed_percent : float = 0.1
+@export var speed_percent : float = 1
 @export var duration : float = 1
 
 var name : String = "Boost"
@@ -19,5 +19,5 @@ func use(itemManager : ItemManager):
 func update(itemManager : ItemManager, delta) :
 	var player: Player =itemManager.player
 	
-	player.set_linear_velocity(-player.transform.basis.z * speed_percent * player.CC * delta) 
+	player.apply_central_force(-player.transform.basis.z * speed_percent * player.CC * delta) 
 	

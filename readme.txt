@@ -1,3 +1,6 @@
+##Priority: revamp the visuals/ add effects
+
+
 Multiplayer:
 	a basic menu for determining how many players, to create viewports, set cameras, make inputs,
 	make only one window take inputs
@@ -9,21 +12,21 @@ Items:
 	improve active item array iteration( make it safe for spamming)
 
 Physics:
-	1/ make the engine an accelarate var using torque curves
-	2/apply force in the direction the car is facing not accounting for rotation in the x axis
-	3/ fix speed gauges
-	4/ add drift
-	add collider boxes 
-	5/clean up code , fix physics layers, organize car node, add itemManager functionality , fix reverse steering
-
+	1/adjust the numbers(find a way to do this automatically)
+	2/fix the stopping when hopping
+	3/fix physics layers, fix reverse steering
+	4/make camera smooth
+	add oval collider boxes 
+	link the tire turning to the turning speed
+	
 Tracks:
 	add start timer/grid
 	add basic wincon
-	make tracks global!
+	
 
 ::Other::
-make camera smooth
+
 when using 2 of the same item delete the older one
-revamp the visuals/ add effects
+
 
 Made in Godot_4.3-stable for Windows

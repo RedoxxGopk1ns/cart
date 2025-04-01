@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://bqleyfdyqox0"]
+[gd_scene load_steps=33 format=4 uid="uid://bqleyfdyqox0"]
 
 [ext_resource type="Script" path="res://tracks/track.gd" id="1_eku18"]
 [ext_resource type="Texture2D" uid="uid://0wof2ikeolop" path="res://assets/texture_01.png" id="1_pgmcf"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://player/dummy/dummy.gd" id="3_5d7ai"]
 [ext_resource type="PackedScene" uid="uid://de1tellnta6r6" path="res://items/resources/item_manager.tscn" id="3_ecoe7"]
 [ext_resource type="Script" path="res://items/resources/dummy_IM.gd" id="5_phkoo"]
-[ext_resource type="PackedScene" uid="uid://20py0tarjqo6" path="res://player/Test/Lepra.tscn" id="7_ogjpu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4me1e"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -34,7 +33,7 @@ size = Vector3(500, 0.5, 500)
 
 [sub_resource type="Curve3D" id="Curve3D_bitop"]
 _data = {
-"points": PackedVector3Array(-42.146, 0, 16.1531, 42.146, 0, -16.1531, 13.0913, 0, -88.2238, -29.8994, 0, -5.75978, 29.8994, 0, 5.75978, 76.2709, 0, -49.5192, 7.29292, 0, -25.5842, -7.29292, 0, 25.5842, 107.007, 0, 14.2296, 39.6116, 0, 1.49976, -39.6116, 0, -1.49976, -11.1192, 0, 59.1828, 31.1557, 0, 0.132923, -31.1557, 0, -0.132923, -58.0569, 0, 7.39943, 10.7605, 0, 27.6186, -10.7605, 0, -27.6186, -128.409, 0, 20.445, -14.3433, 0, 10.3648, 14.3433, 0, -10.3648, -99.0018, 0, -57.864, -22.4048, 0, 18.4263, 22.4048, 0, -18.4263, -49.5192, 0, -89.3622, -14.9714, 0, 5.44419, 14.9714, 0, -5.44419, 13.0913, 0, -88.2238),
+"points": PackedVector3Array(-42.146, 0, 16.1531, 42.146, 0, -16.1531, 13.0913, 0, -88.2238, -29.8994, 0, -5.75978, 29.8994, 0, 5.75978, 76.2709, 0, -49.5192, 7.29292, 0, -25.5842, -7.29292, 0, 25.5842, 107.007, 0, 14.2296, 39.6116, 0, 1.49976, -39.6116, 0, -1.49976, -11.1192, 0, 59.1828, 31.1557, 0, 0.132923, -31.1557, 0, -0.132923, -58.0569, 0, 7.39943, 10.7605, 0, 27.6186, -10.7605, 0, -27.6186, -128.409, 0, 20.445, -17.8386, -2.11596e-05, 14.1455, 17.8386, 2.11596e-05, -14.1455, -99.0018, 0, -57.864, -22.4048, 0, 18.4263, 22.4048, 0, -18.4263, -49.5192, 0, -89.3622, -14.9714, 0, 5.44419, 14.9714, 0, -5.44419, 13.0913, 0, -88.2238),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
@@ -444,7 +443,7 @@ path_joined = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95627, 0)
 use_collision = true
 collision_layer = 9
-polygon = PackedVector2Array(-5, 0, -5, 1, -4.5, 1, -4.5, 0)
+polygon = PackedVector2Array(-5, 0, -5, 0.4, -4.5, 0.2, -4.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
@@ -460,7 +459,7 @@ path_joined = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.95627, 0)
 use_collision = true
 collision_layer = 9
-polygon = PackedVector2Array(5, 0, 5, 1, 4.5, 1, 4.5, 0)
+polygon = PackedVector2Array(5, 0, 5, 0.4, 4.5, 0.2, 4.5, 0)
 mode = 2
 path_node = NodePath("..")
 path_interval_type = 0
@@ -555,7 +554,7 @@ skeleton = NodePath("")
 mesh = SubResource("BoxMesh_cwp0s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.0345881, -0.385231, -0.922172, -0.0135076, 0.92282, -0.384995, 0.99931, -0.000859926, -0.0371222, 13, 0.404714, 30.7356)
+transform = Transform3D(-0.0345881, -0.385231, -0.922172, -0.0135076, 0.92282, -0.384995, 0.99931, -0.000859926, -0.0371222, 13, 0.404714, 70.6507)
 mesh = SubResource("BoxMesh_w5m76")
 skeleton = NodePath("../..")
 
@@ -564,6 +563,3 @@ collision_layer = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fdfpq")
-
-[node name="Hover" parent="." instance=ExtResource("7_ogjpu")]
-transform = Transform3D(-0.0139447, 0, -0.999903, 0, 1, 0, 0.999903, 0, -0.0139447, 3.24477, 0.370151, 59.5931)

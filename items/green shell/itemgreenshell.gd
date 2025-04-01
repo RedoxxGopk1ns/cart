@@ -4,7 +4,7 @@ extends ItemResource
 var green_shell : CharacterBody3D
 var name : String = "Green Shell"
 func use(itemManager : ItemManager):
-	var player : VehicleBody3D = itemManager.player
+	var player : Player = itemManager.player
 	green_shell = load("res://items/green shell/green_shell.tscn").instantiate()
 	green_shell.Owner = itemManager.player
 	

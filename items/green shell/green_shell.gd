@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		var p : Vector3 = raycast.get_collision_point()+Vector3(0,0.6,0)
 		position.y = p.y
 	else : 
-		position.y -= 10 * delta
+		position.y -= 20 * delta
 	var collision : KinematicCollision3D = move_and_collide(-transform.basis.z *delta*speed)
 	if collision:
 		#transform = transform.rotated(Vector3.UP,collision.get_angle())

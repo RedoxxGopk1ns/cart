@@ -1,4 +1,4 @@
-##Priority: revamp the visuals/ add effects
+## Priority: revamp the visuals/ add effects
 
 
 Multiplayer:
@@ -12,13 +12,14 @@ Items:
 	improve active item array iteration( make it safe for spamming)
 
 Physics:
-	1/adjust the numbers(find a way to do this automatically)
-	2/fix the stopping when hopping
-	3/fix physics layers, fix reverse steering
-	4/make camera smooth
+	lock collison rotations axis
 	add oval collider boxes 
-	link the tire turning to the turning speed
 	
+Visuals:
+	make hop animated
+	align wheels with contact point
+	lower the spring distance by changing the 1/dis variable
+	make new set function to prevent the func from turning them off when somone else is using them
 Tracks:
 	add start timer/grid
 	add basic wincon
@@ -29,4 +30,4 @@ Tracks:
 when using 2 of the same item delete the older one
 
 
-Made in Godot_4.3-stable for Windows
+### Made in Godot_4.3-stable for Windows

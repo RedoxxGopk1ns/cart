@@ -76,6 +76,7 @@ drift={
 
 [layer_names]
 
-3d_physics/layer_1="balls"
-3d_physics/layer_2="car hitboxes"
-3d_physics/layer_3="item hitboxes"
+3d_physics/layer_1="cars"
+3d_physics/layer_2="players"
+3d_physics/layer_3="ground"
+3d_physics/layer_4="walls"

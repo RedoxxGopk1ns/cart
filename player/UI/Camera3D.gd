@@ -2,8 +2,7 @@ extends Camera3D
 
 @export var lerp_speed = 3.0
 @export var offset = Vector3.ZERO
-@export var target : Node
-
+@onready var target : Node3D = $".."
 
 func _physics_process(delta):
 	if !target:
